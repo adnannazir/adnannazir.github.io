@@ -1,410 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adnan Nazir — Full-Stack Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --surface2: #1d2026;
+    --border: rgba(255,255,255,0.07);
+    --accent: #3dffc8;
+    --accent2: #7b6ef6;
+    --text: #e8e9eb;
+    --muted: #7a7d85;
+    --tag-bg: rgba(61,255,200,0.08);
+    --tag-border: rgba(61,255,200,0.2);
+    --tag-text: #3dffc8;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Outfit', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
 
-    <title>Adnan - FullStack Web Engineer</title>
+  html { scroll-behavior: smooth; }
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-          rel="stylesheet">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 64px;
+    background: rgba(14,15,17,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-    <!-- Custom styles for this template -->
-    <link href="css/resume.min.css" rel="stylesheet">
+  /* ── LAYOUT ── */
+  section { padding: clamp(4rem,8vw,7rem) clamp(1.5rem, 5vw, 4rem); }
+  .container { max-width: 1100px; margin: 0 auto; }
 
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(123,110,246,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(61,255,200,0.07) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0e0f11;
+  }
+  .btn-primary:hover { background: #5fffda; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.2); background: var(--surface); }
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  .hero-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 240px;
+    flex-shrink: 0;
+  }
+  .avatar-wrap {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: var(--surface2);
+  }
+  .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar-initials {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--accent);
+  }
+  .hero-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .hero-card p { font-size: 12px; color: var(--muted); margin-bottom: 1rem; }
+  .stat-row { display: flex; gap: 1rem; }
+  .stat { text-align: center; }
+  .stat-num { font-family: var(--mono); font-size: 20px; color: var(--accent); font-weight: 500; }
+  .stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .status-dot {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--muted);
+    margin-top: 1rem;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #3dffc8; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  /* ── SECTION HEADER ── */
+  .section-header { margin-bottom: 3rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+  }
+  h2 em { font-style: italic; color: var(--muted); }
+  .section-rule { width: 40px; height: 2px; background: var(--accent); margin-top: 1rem; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
+  .about-text p:first-child { color: var(--text); font-size: 1.05rem; }
+  .about-facts { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .fact {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .fact-icon { color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .fact-content { font-size: 14px; }
+  .fact-label { color: var(--muted); font-size: 12px; }
+
+  /* ── SKILLS ── */
+  #skills { }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: rgba(61,255,200,0.25); transform: translateY(-2px); }
+  .skill-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 20px;
+    color: var(--accent);
+  }
+  .skill-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; }
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+  }
+  .tag.purple {
+    background: rgba(123,110,246,0.1);
+    border-color: rgba(123,110,246,0.25);
+    color: #a89cf8;
+  }
+  .tag.neutral {
+    background: rgba(255,255,255,0.05);
+    border-color: var(--border);
+    color: var(--muted);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--surface); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .project-card:hover { border-color: rgba(61,255,200,0.3); transform: translateY(-3px); }
+  .project-header {
+    padding: 1.75rem 1.75rem 0;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+  }
+  .project-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .project-links { display: flex; gap: 8px; }
+  .project-link {
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+  .project-link:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+  .project-body { padding: 1.25rem 1.75rem 1.75rem; flex: 1; display: flex; flex-direction: column; }
+  .project-body h3 { font-size: 17px; font-weight: 600; margin-bottom: 0.5rem; }
+  .project-body p { font-size: 13.5px; color: var(--muted); line-height: 1.7; flex: 1; }
+  .project-footer { padding: 1rem 1.75rem 1.5rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ── EXPERIENCE ── */
+  #experience { }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2rem; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(61,255,200,0.15);
+  }
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-item h3 { font-size: 17px; font-weight: 600; margin-bottom: 2px; }
+  .timeline-company {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--surface); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .edu-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+  .edu-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .edu-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .edu-card .degree { font-size: 13px; color: var(--muted); margin-bottom: 0.5rem; }
+  .edu-card .gpa { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+
+  /* ── CONTACT ── */
+  #contact { text-align: center; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(61,255,200,0.3); color: var(--accent); }
+  .contact-link .icon { font-size: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem clamp(1.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
 </head>
+<body>
 
-<body id="page-top">
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Home</span>
-        <span class="d-none d-lg-block">
-          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
-        </span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#education">Education</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
-            </li>
-        </ul>
-    </div>
+<nav>
+  <span class="nav-logo">AN_</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<div class="container-fluid p-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-        <div class="my-auto">
-            <h1 class="mb-0">Adnan
-                <span class="text-primary">Nazir</span>
-            </h1>
-            <div class="subheading mb-5">Lahore, Pakistan 54000 · (+92) 334-2423640 ·
-                <a href="mailto:adnannazir.cs@gmail.com">adnannazir.cs@gmail.com</a>
-            </div>
-            <p class="mb-5">I am experienced full-stack web Engineer and Unity3D game developer With a robust background
-                spanning over nine years, I bring a wealth of experience to the table.
-
-            </p>
-            <ul class="list-inline list-social-icons mb-0">
-
-                <li class="list-inline-item">
-                    <a href="https://www.facebook.com/adnannazirahmed" target="_blank">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                </span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="https://twitter.com/adnanazir" target="_blank">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="https://www.linkedin.com/in/adnanazir/" target="_blank">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                </span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="https://github.com/adnannazir" target="_blank">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-                    </a>
-                </li>
-                  <li class="list-inline-item">
-                    <a href="https://stackoverflow.com/users/3410736/adnan-nazir" target="_blank">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                </span>
-                    </a>
-                </li>
-            </ul>
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow fade-up">Available for freelance work</div>
+        <h1 class="fade-up" style="transition-delay:0.1s">
+          Full-Stack<br>
+          <em>Engineer</em> &amp;<br>
+          Problem Solver
+        </h1>
+        <p class="hero-sub fade-up" style="transition-delay:0.2s">
+          12+ years building web applications with Python, Django, and Java — plus a background in Unity3D game development. I craft systems that are reliable, maintainable, and built to last.
+        </p>
+        <div class="hero-ctas fade-up" style="transition-delay:0.3s">
+          <a href="#projects" class="btn btn-primary">View my work</a>
+          <a href="mailto:imadnannazir@gmail.com" class="btn btn-outline">Get in touch</a>
         </div>
-    </section>
-
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-        <div class="my-auto">
-            <h2 class="mb-5">Experience</h2>
-
-            <!--
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Full Stack Web Engineer | Unity3D Game Developer</h3>
-                    <div class="subheading mb-3">Part-Time Freelancer</div>
-                    <p>Full-stack web development technologies<br>
-                        ✔ 𝐏𝐲𝐭𝐡𝐨𝐧 (𝐃𝐣𝐚𝐧𝐠𝐨) 𝐚𝐧𝐝 𝐉𝐚𝐯𝐚<br>
-                        ✔ 𝐇𝐓𝐌𝐋, 𝐂𝐒𝐒, 𝐉𝐚𝐯𝐚𝐒𝐜𝐫𝐢𝐩𝐭 (𝐣𝐐𝐮𝐞𝐫𝐲), 𝐛𝐨𝐨𝐭𝐬𝐭𝐫𝐚𝐩, 𝐚𝐧𝐝 𝐀𝐣𝐚𝐱<br>
-                        ✔ Unity3D Game Development<br>
-                        I am delving into freelance work once again and hunting short-term projects for enhancing my
-                        experience and remaining intact with the current development in web development world.</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">September 2023 - Present</span>
-                </div>
-            </div>
--->
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Senior Full Stack Web Engineer</h3>
-                    <div class="subheading mb-3">IT Section</div>
-                    <p>I am working on various full-stack web development technologies<br>
-                        ✔ 𝐏𝐲𝐭𝐡𝐨𝐧 (𝐃𝐣𝐚𝐧𝐠𝐨) 𝐚𝐧𝐝 𝐉𝐚𝐯𝐚<br>
-                        ✔ 𝐇𝐓𝐌𝐋, 𝐂𝐒𝐒, 𝐉𝐚𝐯𝐚𝐒𝐜𝐫𝐢𝐩𝐭 (𝐣𝐐𝐮𝐞𝐫𝐲), 𝐛𝐨𝐨𝐭𝐬𝐭𝐫𝐚𝐩, 𝐚𝐧𝐝 𝐀𝐣𝐚𝐱<br>
-                        I have worked on development of centralized payroll and income tax management systems, Primavera
-                        project management dashboard support, tender and invoice management systems and various other
-                        projects. I've played a pivotal role in the creation of an online exam platform for internships,
-                        a centralized pension disbursement system, and management dashboards for material and inventory
-                        tracking. My responsibilities range from system development to data analysis, HR support, and
-                        more. This is my main job.</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">December 2018 - Present</span>
-                </div>
-            </div>
-
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Sr. Unity3D Game Developer/ Team Lead</h3>
-                    <div class="subheading mb-3">GameSlyce Studios | Curiologix</div>
-                    <p>I worked as Senior Game developer at the company. My work tasks include 2D and 3D Game
-                        Development, App development and Game tools' development using unity3d. I have worked on various
-                        tools<br>
-                        ✔2D and 3D games<br>
-                        ✔Games Assets<br>
-                        ✔Bug fixes<br>
-                        ✔Feature additions<br>
-                        I have a strong command of ads networks, in-app purchases, and social features integration,
-                        along with a track record of successfully publishing games and apps to the Google Play Store and
-                        iOS App Store. I also worked on and off with many clients as freelancer on different projects.
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">June 2015 - December 2018</span>
-                </div>
-            </div>
-
-
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Unity3D Game Developer</h3>
-                    <div class="subheading mb-3">SSA Soft</div>
-                    <p>I worked as Game developer at this company. My work tasks include 2D and 3D Game Development
-                        development using unity3d. I have worked on various tools</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">March 2015 - June 2015</span>
-                </div>
-            </div>
-
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Unity3D Game Developer</h3>
-                    <div class="subheading mb-3">GameSlyce Studios | Curiologix</div>
-                    <p>After completion of internship and my degree. I joined this game studio to further my career as a
-                        game developer in GameSlyce studios.</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">September 2014 - March 2015</span>
-                </div>
-            </div>
-
-            <div class="resume-item d-flex flex-column flex-md-row">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Unity3D Intern</h3>
-                    <div class="subheading mb-3">GameSlyce Studios | Curiologix</div>
-                    <p>Start of Journey into professional game development. I started learning about Unity3d and various
-                        technologies from this game studio.</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">March 2014 - August 2014</span>
-                </div>
-            </div>
-
+      </div>
+      <div class="hero-card fade-up" style="transition-delay:0.4s">
+        <div class="avatar-wrap">
+          <div class="avatar-initials">AN</div>
         </div>
+        <h3>Adnan Nazir</h3>
+        <p>Lahore, Pakistan</p>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Years exp.</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3.8</div>
+            <div class="stat-label">MSCS GPA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">🥇</div>
+            <div class="stat-label">Gold medal</div>
+          </div>
+        </div>
+        <div class="status-dot">
+          <span class="dot"></span>
+          Open to opportunities
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    </section>
-
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
-        <div class="my-auto">
-            <h2 class="mb-5">Education</h2>
-
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Virtual University of Pakistan</h3>
-                    <div class="subheading mb-3">Masters of Science in Computer Science (MSCS)</div>
-                    <div>Computer Science - Software Engineering</div>
-                    <p>GPA: 3.8</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">2021 - 2024</span>
-                </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">01 · About</div>
+      <h2>Engineer with range,<br><em>depth, and drive</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>I'm a Senior Full-Stack Web Engineer with over nine years of professional experience — starting as a Unity3D game developer and growing into enterprise-grade web systems built on Python/Django and Java.</p>
+        <p>My day-to-day work spans centralized payroll systems, pension disbursement platforms, inventory management dashboards, and online exam platforms. I take ownership from architecture through deployment.</p>
+        <p>I hold an MSCS (GPA 3.8) from Virtual University of Pakistan and a gold-medal BSCS (GPA 3.99) from Islamia University of Bahawalpur, with a focus on software engineering.</p>
+        <p>Outside of code, I'm driven by a curiosity about technology's edge — whether that's backend systems, game mechanics, or the latest in human-computer interaction.</p>
+      </div>
+      <div class="fade-up" style="transition-delay:0.15s">
+        <div class="about-facts">
+          <div class="fact">
+            <span class="fact-icon">📍</span>
+            <div>
+              <div class="fact-label">Location</div>
+              <div class="fact-content">Lahore, Pakistan</div>
             </div>
-
-            <div class="resume-item d-flex flex-column flex-md-row">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">The Islamia University of Bahawalpur</h3>
-                    <div class="subheading mb-3">BACHELOR OF SCIENCE in Computer Science (BSCS)</div>
-                    <p>GPA: 3.99 (Gold Medalist)</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">October 2010 - August 2014</span>
-                </div>
+          </div>
+          <div class="fact">
+            <span class="fact-icon">💼</span>
+            <div>
+              <div class="fact-label">Current role</div>
+              <div class="fact-content">Senior Full-Stack Engineer (IT Section) — Dec 2018–Present</div>
             </div>
-
+          </div>
+          <div class="fact">
+            <span class="fact-icon">🎓</span>
+            <div>
+              <div class="fact-label">Education</div>
+              <div class="fact-content">MSCS (2021–2024) · Gold Medalist BSCS (2010–2014)</div>
+            </div>
+          </div>
+          <div class="fact">
+            <span class="fact-icon">🔗</span>
+            <div>
+              <div class="fact-label">Find me on</div>
+              <div class="fact-content">
+                <a href="https://github.com/adnannazir" style="color:var(--accent);text-decoration:none;">GitHub</a> ·
+                <a href="https://www.linkedin.com/in/adnanazir/" style="color:var(--accent);text-decoration:none;">LinkedIn</a> ·
+                <a href="https://stackoverflow.com/users/3410736/adnan-nazir" style="color:var(--accent);text-decoration:none;">Stack Overflow</a>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
-        <div class="my-auto">
-            <h2 class="mb-5">Skills</h2>
-
-            <div class="subheading mb-3">Programming Languages &amp; Tools</div>
-            <ul class="list-inline list-icons">
-
-                <li class="list-inline-item">
-                    <i class="devicon-python-plain"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-django-plain"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-pycharm-plain"></i>
-                </li>
-
-                <li class="list-inline-item">
-                    <i class="devicons devicons-html5"></i>
-                </li>
-
-                <li class="list-inline-item">
-                    <i class="devicons devicons-css3"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicons devicons-javascript"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicons devicons-jquery"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-android-plain"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-mysql-plain"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-csharp-plain"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-bootstrap-plain"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-unity-original"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-linux-plain"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-github-original"></i>
-                </li>
-                <li class="list-inline-item">
-                    <i class="devicon-vscode-plain"></i>
-                </li>
-            </ul>
-
-            <div class="subheading mb-3">🛠 𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥 𝐒𝐤𝐢𝐥𝐥𝐬</div>
-            <ul class="fa-ul mb-0">
-                <li>
-                    <i class="fa-li fa fa-check"></i>
-                    𝐅𝐮𝐥𝐥-𝐒𝐭𝐚𝐜𝐤 𝐖𝐞𝐛 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐦𝐞𝐧𝐭: Experienced in building web applications using Django (Python)
-                    frameworks and Java (JSP). HTML, CSS, JavaScript (jQuery), and Ajax.
-                </li>
-                <li>
-                    <i class="fa-li fa fa-check"></i>
-                    𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭: Skilled in working with various databases including MySQL, SQLite, Oracle, and
-                    PostgreSQL.
-                </li>
-                <li>
-                    <i class="fa-li fa fa-check"></i>
-                    𝐀𝐏𝐈 𝐈𝐧𝐭𝐞𝐠𝐫𝐚𝐭𝐢𝐨𝐧: Well-versed in integrating REST APIs into web applications.
-                </li>
-                <li>
-                    <i class="fa-li fa fa-check"></i>
-                    𝐔𝐧𝐢𝐭𝐲𝟑𝐃 𝐆𝐚𝐦𝐞 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐦𝐞𝐧𝐭: Extensive experience in Unity3D game development, including asset creation
-                    and deployment for Unity3D Game Engine
-                </li>
-                <li>
-                    <i class="fa-li fa fa-check"></i>
-                    𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭 𝐚𝐧𝐝 𝐓𝐞𝐬𝐭𝐢𝐧𝐠: Proficient in deploying mobile apps to Android and iOS Stores, Games Assets
-                    to Unity3D Asset Store. Adept at testing, troubleshooting, and bug fixing.
-                </li>
-                <li>
-                    <i class="fa-li fa fa-check"></i>
-                    𝐀𝐠𝐢𝐥𝐞 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐦𝐞𝐧𝐭 𝐚𝐧𝐝 𝐒𝐜𝐫𝐮𝐦
-                </li>
-            </ul>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">02 · Skills</div>
+      <h2>Tech I build <em>real things</em> with</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🐍</div>
+        <h3>Backend</h3>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px">Python & Java for enterprise systems</p>
+        <div class="skill-items">
+          <span class="tag">Python</span>
+          <span class="tag">Django</span>
+          <span class="tag">Java</span>
+          <span class="tag">JSP</span>
+          <span class="tag">REST APIs</span>
         </div>
-    </section>
-
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
-        <div class="my-auto">
-            <h2 class="mb-5">Interests</h2>
-            <p>I don't find much time for the outdoors, but I love to explore nature, and visit as many place as I can.</p>
-             <p class="mb-0">I love to study books on personal help and growth, success and human evolution.</p>
-            <p class="mb-0">I spend a large amount of my free time exploring the latest technology
-                advancements in the back-end and full-stack web development world.</p>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.1s">
+        <div class="skill-icon">🗄️</div>
+        <h3>Databases</h3>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px">Relational DBs from small to enterprise</p>
+        <div class="skill-items">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Oracle</span>
         </div>
-    </section>
-
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
-        <div class="my-auto">
-            <h2 class="mb-5">Awards &amp; Certifications</h2>
-            <ul class="fa-ul mb-0">
-                <li>
-                    <i class="fa-li fa fa-trophy text-warning"></i>
-                   <a href="https://coursera.org/share/0efa2e800eaf60eb0050bd6b90394d48" target="_blank">Technical Support Fundamentals (Coursera.org)</a>
-                </li>
-                <li>
-                    <i class="fa-li fa fa-trophy text-warning"></i>
-                  <a href="https://coursera.org/share/ed81a6a4f5906df46666da400f213d81" target="_blank">Crash Course on Python (Coursera.org)</a>
-                </li>
-                  <li>
-                    <i class="fa-li fa fa-trophy text-warning"></i>
-                  <a href="https://coursera.org/share/6b588ad73d746be863bfa68b0cf4e696" target="_blank">Command Line Basics in Linux (Coursera.org)</a>
-                </li>
-                <li>
-                    <i class="fa-li fa fa-trophy text-warning"></i>
-                    1<sup>st</sup>
-                    Position - Batch Topper BSCS (2010-2014) - Islamia University Bwp
-                </li>
-
-                <li>
-                <li>
-                    <i class="fa-li fa fa-trophy text-warning"></i>
-                    Participated in "Overclocked Programming Competition" at BZU Multan in Dec, 2012
-                </li>
-                <li>
-                    <i class="fa-li fa fa-trophy text-warning"></i>  3<sup>rd</sup>
-                    Easy Writing Competition in School
-
-                </li>
-            </ul>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.2s">
+        <div class="skill-icon">🌐</div>
+        <h3>Frontend</h3>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px">Functional, clean, and responsive UIs</p>
+        <div class="skill-items">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">jQuery</span>
+          <span class="tag">Bootstrap</span>
+          <span class="tag">HTMX</span>
         </div>
-    </section>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.3s">
+        <div class="skill-icon">🎮</div>
+        <h3>Game Dev</h3>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px">Former team lead at a game studio</p>
+        <div class="skill-items">
+          <span class="tag purple">Unity3D</span>
+          <span class="tag purple">C#</span>
+          <span class="tag purple">2D/3D Games</span>
+          <span class="tag purple">iOS & Android</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.1s">
+        <div class="skill-icon">⚙️</div>
+        <h3>Dev Practice</h3>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px">Delivery, quality, and collaboration</p>
+        <div class="skill-items">
+          <span class="tag neutral">Agile / Scrum</span>
+          <span class="tag neutral">Git</span>
+          <span class="tag neutral">Testing</span>
+          <span class="tag neutral">Linux CLI</span>
+          <span class="tag neutral">Deployment</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.2s">
+        <div class="skill-icon">📊</div>
+        <h3>Domains</h3>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px">Systems I've shipped from scratch</p>
+        <div class="skill-items">
+          <span class="tag neutral">Payroll</span>
+          <span class="tag neutral">HR Systems</span>
+          <span class="tag neutral">Inventory</span>
+          <span class="tag neutral">E-learning</span>
+          <span class="tag neutral">Pension</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">03 · Projects</div>
+      <h2>Things I've <em>built & shipped</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="projects-grid">
 
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <div class="project-card fade-up">
+        <div class="project-header">
+          <div class="project-icon">📈</div>
+          <div class="project-links">
+            <a href="https://github.com/adnannazir/kpi_system" class="project-link" target="_blank" title="GitHub">↗</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>KPI Management System</h3>
+          <p>Comprehensive employee KPI tracking and performance management system. Covers employee profiles, department management, goal-setting, performance reviews, and an analytics dashboard with data-driven insights.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Django</span>
+          <span class="tag">Python</span>
+          <span class="tag">Bootstrap</span>
+          <span class="tag neutral">HR / Analytics</span>
+        </div>
+      </div>
 
-<!-- Plugin JavaScript -->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Custom scripts for this template -->
-<script src="js/resume.min.js"></script>
+      <div class="project-card fade-up" style="transition-delay:0.1s">
+        <div class="project-header">
+          <div class="project-icon">🗂️</div>
+          <div class="project-links">
+            <a href="https://github.com/adnannazir/projectflow_django" class="project-link" target="_blank" title="GitHub">↗</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>ProjectFlow</h3>
+          <p>Web-based project management app that helps teams organise projects, manage tasks, and track progress efficiently. Full CRUD workflow with team collaboration features built on Django.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Django</span>
+          <span class="tag">Python</span>
+          <span class="tag neutral">Project Mgmt</span>
+        </div>
+      </div>
 
+      <div class="project-card fade-up" style="transition-delay:0.2s">
+        <div class="project-header">
+          <div class="project-icon">🎫</div>
+          <div class="project-links">
+            <a href="https://github.com/adnannazir/deskflow_django" class="project-link" target="_blank" title="GitHub">↗</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>DeskFlow</h3>
+          <p>Full-stack IT helpdesk and support ticketing system built with Django and Bootstrap 5. Streamlines internal support workflows with ticket creation, assignment, and status tracking.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Django</span>
+          <span class="tag">Python</span>
+          <span class="tag">Bootstrap 5</span>
+          <span class="tag neutral">IT Helpdesk</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" style="transition-delay:0.3s">
+        <div class="project-header">
+          <div class="project-icon">⚡</div>
+          <div class="project-links">
+            <a href="https://github.com/adnannazir/mcqsproject" class="project-link" target="_blank" title="GitHub">↗</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>HTMX MCQ Platform</h3>
+          <p>Exploration project demonstrating HTMX for partial HTML updates without full page reloads. An MCQ/quiz interface that feels native and snappy — no frontend framework required.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Django</span>
+          <span class="tag">HTMX</span>
+          <span class="tag">Python</span>
+          <span class="tag neutral">E-learning</span>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:2rem;text-align:center;" class="fade-up">
+      <a href="https://github.com/adnannazir" target="_blank" class="btn btn-outline">View all repos on GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">04 · Experience</div>
+      <h2>12+ years of <em>professional work</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="timeline fade-up">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Dec 2018 — Present</div>
+        <h3>Senior Full-Stack Web Engineer</h3>
+        <div class="timeline-company">IT Section (Government)</div>
+        <p class="timeline-desc">Leading development of enterprise web systems including centralized payroll and income tax management, pension disbursement, Primavera project dashboards, tender/invoice management, and an online exam platform for internship recruitment. Roles span system development, data analysis, and HR support.</p>
+        <div class="timeline-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Django</span>
+          <span class="tag">Java</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Oracle</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Jun 2015 — Dec 2018</div>
+        <h3>Senior Unity3D Game Developer / Team Lead</h3>
+        <div class="timeline-company">GameSlyce Studios | Curiologix</div>
+        <p class="timeline-desc">Led game development projects including 2D/3D titles, tooling, and asset creation. Handled ads networks (AdMob etc.), in-app purchases, and social feature integrations. Published games and apps to Google Play and iOS App Store. Also took freelance contracts concurrently.</p>
+        <div class="timeline-tags">
+          <span class="tag purple">Unity3D</span>
+          <span class="tag purple">C#</span>
+          <span class="tag purple">iOS</span>
+          <span class="tag purple">Android</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 2015 — Jun 2015</div>
+        <h3>Unity3D Game Developer</h3>
+        <div class="timeline-company">SSA Soft</div>
+        <p class="timeline-desc">2D and 3D game development using Unity3D for client projects.</p>
+        <div class="timeline-tags">
+          <span class="tag purple">Unity3D</span>
+          <span class="tag purple">C#</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 2014 — Mar 2015</div>
+        <h3>Unity3D Game Developer (+ Intern)</h3>
+        <div class="timeline-company">GameSlyce Studios | Curiologix</div>
+        <p class="timeline-desc">First professional role after graduation. Started as an intern learning Unity3D and mobile game development, then converted to a full developer position.</p>
+        <div class="timeline-tags">
+          <span class="tag purple">Unity3D</span>
+          <span class="tag neutral">Entry-level</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">05 · Education</div>
+      <h2>Academic <em>foundations</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="edu-grid fade-up">
+      <div class="edu-card">
+        <div class="edu-badge">Masters</div>
+        <h3>Virtual University of Pakistan</h3>
+        <div class="degree">Master of Science in Computer Science (MSCS)<br>Specialisation: Software Engineering</div>
+        <div class="gpa">GPA 3.8 · 2021–2024</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-badge">Bachelor · 🥇 Gold Medalist</div>
+        <h3>Islamia University of Bahawalpur</h3>
+        <div class="degree">BSc in Computer Science (BSCS)<br>Batch Topper — 1st Position</div>
+        <div class="gpa">GPA 3.99 · 2010–2014</div>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;" class="fade-up">
+      <p style="font-size:13px;color:var(--muted);">Certifications: Technical Support Fundamentals · Python Crash Course · Command Line Basics (all Coursera / Google) · Overclocked Programming Competition participant (BZU Multan, 2012)</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label" style="text-align:center">06 · Contact</div>
+      <h2 style="text-align:center">Let's build something<br><em>worth building</em></h2>
+      <p style="color:var(--muted);max-width:420px;margin:1rem auto 0;font-size:15px;text-align:center">
+        Open to freelance projects, consulting, and full-time opportunities. Reach out any time.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:imadnannazir@gmail.com" class="contact-link">
+          <span class="icon">✉️</span> imadnannazir@gmail.com
+        </a>
+        <a href="https://github.com/adnannazir" target="_blank" class="contact-link">
+          <span class="icon">🐙</span> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/adnanazir/" target="_blank" class="contact-link">
+          <span class="icon">💼</span> LinkedIn
+        </a>
+        <a href="https://www.upwork.com/freelancers/adnann13" target="_blank" class="contact-link">
+          <span class="icon">🟢</span> Upwork
+        </a>
+        <a href="https://stackoverflow.com/users/3410736/adnan-nazir" target="_blank" class="contact-link">
+          <span class="icon">📚</span> Stack Overflow
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Adnan Nazir</span>
+  <a href="https://github.com/adnannazir" target="_blank">github.com/adnannazir</a>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Trigger hero items immediately
+  setTimeout(() => {
+    document.querySelectorAll('#hero .fade-up').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 120);
+    });
+  }, 100);
+</script>
 </body>
-
 </html>
