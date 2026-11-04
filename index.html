@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adnan Nazir — Senior Full-Stack Engineer</title>
+<meta name="description" content="Adnan Nazir — Senior Full-Stack Engineer with 12+ years building enterprise Python & Django systems, payroll MIS platforms, and AI-integrated SaaS. Based in Lahore, available for remote work.">
+<meta name="author" content="Adnan Nazir">
+<link rel="canonical" href="https://adnannazir.github.io/">
+<meta name="theme-color" content="#235C56">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23235C56'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='700' text-anchor='middle' fill='white'%3EAN%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Adnan Nazir">
+<meta property="og:title" content="Adnan Nazir — Senior Full-Stack Engineer">
+<meta property="og:description" content="12+ years building enterprise Python & Django systems, payroll MIS platforms, and AI-integrated SaaS.">
+<meta property="og:url" content="https://adnannazir.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Adnan Nazir — Senior Full-Stack Engineer">
+<meta name="twitter:description" content="12+ years building enterprise Python & Django systems, payroll MIS platforms, and AI-integrated SaaS.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Adnan Nazir","jobTitle":"Senior Full-Stack Engineer","url":"https://adnannazir.github.io/","address":{"@type":"PostalAddress","addressLocality":"Lahore","addressCountry":"PK"},"sameAs":["https://github.com/adnannazir","https://www.linkedin.com/in/adnanazir/","https://stackoverflow.com/users/3410736/adnan-nazir"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -80,7 +96,28 @@
     font-size:14px;font-weight:600;
   }
   .navcta:hover{background:var(--teal-deep);text-decoration:none;}
-  @media(max-width:760px){.navlinks{display:none;}}
+  nav{position:relative;gap:12px;}
+  .menu-btn{
+    display:none;background:none;border:1px solid var(--line);border-radius:6px;
+    width:40px;height:38px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer;
+  }
+  .skip-link{
+    position:absolute;left:-9999px;top:8px;background:var(--teal);color:#fff;
+    padding:8px 14px;border-radius:6px;z-index:100;
+  }
+  .skip-link:focus{left:12px;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px;}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  @media(max-width:760px){
+    .menu-btn{display:block;margin-left:auto;}
+    .navlinks{
+      display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+      background:var(--bg);border-bottom:1px solid var(--line);padding:6px 28px 12px;
+    }
+    header.open .navlinks{display:flex;}
+    .navlinks a{display:block;padding:12px 0;border-bottom:1px solid var(--line);}
+    .navlinks li:last-child a{border-bottom:0;}
+  }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -214,6 +251,7 @@
   .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
   .proj-icon{font-size:20px;}
   .proj-link{color:var(--ink-soft);font-size:15px;}
+  .proj-private{font-size:11px;color:var(--ink-soft);background:var(--bg-alt);border:1px solid var(--line);padding:3px 8px;border-radius:5px;}
   .proj-card h3{font-size:16.5px;margin-bottom:8px;}
   .proj-card p{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;flex-grow:1;}
   .view-all{margin-top:36px;text-align:center;}
@@ -275,10 +313,12 @@
 </head>
 <body>
 
-<header>
-  <nav>
+<a class="skip-link" href="#about">Skip to content</a>
+<header id="site-header">
+  <nav aria-label="Main">
     <div class="brand">Adnan Nazir</div>
-    <ul class="navlinks">
+    <button class="menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+    <ul class="navlinks" id="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -333,7 +373,7 @@
       <div class="eyebrow">01 · About me</div>
       <h2>Engineer with range, depth &amp; drive</h2>
       <p>I'm a Senior Full-Stack Engineer with over a decade of professional experience — starting as a Unity3D game developer and growing into enterprise-scale systems that process payroll, pension disbursements, and regulatory compliance.</p>
-      <p>I currently serve as <strong>Assistant Director IT</strong> within the Digital &amp; Technology Function of a large government utility organisation, where I've built and maintained MIS dashboards, operational reporting pipelines, and centralized data systems serving <strong>10+ employees across 250 regional offices</strong> nationwide. I'm additionally entrusted with the lookafter charge of <strong>Database Administration</strong> for the organisation.</p>
+      <p>I currently serve as <strong>Assistant Director IT</strong> within the Digital &amp; Technology Function of a large government utility organisation, where I've built and maintained MIS dashboards, operational reporting pipelines, and centralized data systems serving <strong>10K+ employees across 250 regional offices</strong> nationwide. I'm additionally entrusted with the additional charge of <strong>Database Administration</strong> for the organisation.</p>
       <p>My MSCS thesis focused on <strong>Automatic Django Code Generation from UML Diagrams</strong> - a reflection of how deeply I think about software architecture and tooling, not just delivery.</p>
       <p>On Upwork, I've maintained a <strong>100% Job Success Score</strong> across 29 contracts in Django, Python, and Unity3D, and I'm actively building toward larger, longer-term engagements that match my enterprise background.</p>
     </div>
@@ -440,7 +480,7 @@
     <div class="proj-grid">
       <div class="proj-card featured">
         <span class="proj-badge">LATEST</span>
-        <div class="proj-top"><span class="proj-icon">📞</span></div>
+        <div class="proj-top"><span class="proj-icon">📞</span><span class="proj-private mono" title="Source code is private — demo available on request">🔒 Private repo</span></div>
         <h3>Missed-Call Text-Back System</h3>
         <p>Production-ready Django 5.2 app that auto-responds to missed business calls via SMS, using Celery/Redis for async task handling, Twilio for telephony, and the Claude API for AI-generated replies. Deployed on Railway.</p>
         <div class="tag-row"><span class="tag">Django 5.2</span><span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">Twilio</span><span class="tag">Claude API</span></div>
@@ -489,10 +529,10 @@
 
     <div class="timeline">
       <div class="tl-item">
-        <div class="tl-meta">Dec 2018 — Present · 7+ years</div>
+        <div class="tl-meta">Dec 2018 — Present · 8 years</div>
         <h3>Assistant Director IT</h3>
         <div class="tl-org">Digital &amp; Technology Function — Government Utility Organisation · Lahore · Full-time</div>
-        <div class="charge-note">Also holding lookafter charge as <strong>Assistant Director – Database Administration</strong>, reporting through the IT Department. Currently driving a database health audit and pursuing AWS database certification as part of a 90-day improvement plan for the DB Administration function.</div>
+        <div class="charge-note">Also holding additional charge as <strong>Assistant Director – Database Administration</strong>, reporting through the IT Department. Currently driving a database health audit and pursuing AWS database certification as part of a 90-day improvement plan for the DB Administration function.</div>
         <ul>
           <li>Built centralized payroll &amp; income tax MIS system — 250 active users, integrated with banking software for CFO-level disbursement reporting</li>
           <li>Designed real-time Oracle Primavera dashboard for MD &amp; Board of Directors — replaced entirely manual reporting</li>
@@ -553,5 +593,20 @@
   © 2026 Adnan Nazir · Lahore, Pakistan · Built with care · <a href="https://github.com/adnannazir" target="_blank" rel="noopener">github.com/adnannazir</a>
 </footer>
 
+<script>
+  (function(){
+    var header=document.getElementById('site-header');
+    var btn=header.querySelector('.menu-btn');
+    function setOpen(o){
+      header.classList.toggle('open',o);
+      btn.setAttribute('aria-expanded',String(o));
+      btn.textContent=o?'✕':'☰';
+    }
+    btn.addEventListener('click',function(){setOpen(!header.classList.contains('open'));});
+    header.querySelectorAll('.navlinks a').forEach(function(a){
+      a.addEventListener('click',function(){setOpen(false);});
+    });
+  })();
+</script>
 </body>
 </html>
